@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  description: MyString
+  condition: MyString
+  image_url: MyString
+  value: 1
+  request: MyString
+  freebie: MyString
+  status: MyString
+
+two:
+  category: MyString
+  description: MyString
+  condition: MyString
+  image_url: MyString
+  value: 1
+  request: MyString
+  freebie: MyString
+  status: MyString
