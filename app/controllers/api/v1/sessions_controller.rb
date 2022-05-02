@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < Api::V1::BaseController # inherit from base controller
+  skip_before_action :verify_request, only: [:login] # skip for login
+  
   def login
     user = find_user
 
