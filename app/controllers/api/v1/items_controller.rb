@@ -25,6 +25,13 @@ class Api::V1::ItemsController < ApplicationController
     redirect_to items_path(@item)
   end
 
+  def myitems
+
+  end
+
+  def receive
+    
+  end
   private
 
   def set_item
