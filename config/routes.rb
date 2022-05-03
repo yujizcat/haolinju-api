@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       resources :bids, only: [:index, :create, :show, :destroy] do
         resources :reviews, only: [:index]
       end
+    
+      get    "users/:id/items",      to: "items#myitems"
+      patch  "bids/:id/decline",     to: "bids#decline"
+      patch  "bids/:id/accept",      to: "bids#accept"
+      patch  "items/:id/receive",    to: "items#receive"
     end
   end
 end
