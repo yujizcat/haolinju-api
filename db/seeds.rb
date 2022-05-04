@@ -18,19 +18,65 @@ Compound.destroy_all
 puts "Database cleaned"
 
 compound = Compound.create(address: Faker::Address.street_name)
+
+puts "Seeding users"
 users = []
-rand(5...10).times do
-  users.push(User.create!({ nickname: Faker::Name.name, is_banned: 0, score: 0,
+50.times do
+  users.push(User.create!({ nickname: Faker::Name.name, is_banned: false, score: 0,
                             building_number: rand(1...5), room_number: rand(1...99),
                             compound: compound, phone_number: Faker::PhoneNumber.cell_phone,
-                            avatar_url: "" }))
+                            avatar_url: Faker::Avatar.image(slug: "my-own-slug", size: "100x100") }))
 end
 
-rand(20...100).times do
-  Item.create!({ name: Faker::Food.dish, category: Faker::Food.ethnic_category,
-                 condition: "", image_url: "", value: rand(10...100), request: "",
-                 freebie: "", status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+puts "Seeding items"
+
+# Standards
+conditions = ["Brand new", "Almost new", "In working condition", "Broken"]
+item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
+
+
+
+
+
+puts "Seeding items:home appliances"
+# the first one is static
+item = Item.new({ name: Faker::Appliance.equipment, category: "Home Appliances",
+  condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
+  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save!
+
+rand(20...50).times do
+  item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
+  item = Item.new({ name: Faker::Appliance.equipment, category: "Home Appliances",
+                 condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
+                 is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+  item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+  item.save
+  item.save!
 end
+
+
+
+
+
+puts "Seeding items:musical instruments"
+# the first one is static
+item = Item.new({ name: Faker::Music.instrument, category: "Musical Instruments",
+  condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
+  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save!
+
+rand(20...50).times do
+  item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
+  item = Item.new({ name: Faker::Music.instrument, category: "Musical Instruments",
+                 condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
+                 is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+  item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+  item.save!
+end
+
 
 # Use this for random get a user
 # User.order(Arel.sql('RANDOM()')).first
