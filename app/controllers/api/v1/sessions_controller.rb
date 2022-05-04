@@ -1,9 +1,9 @@
 class Api::V1::SessionsController < Api::V1::BaseController # inherit from base controller
   skip_before_action :verify_request, only: [:login] # skip for login
-  
+
   def login
     user = find_user
-
+    p user
     token = jwt_encode(user_id: user.id) # put user_id in payload
     render json: {
       headers: { "X-USER-TOKEN" => token },
@@ -19,11 +19,18 @@ class Api::V1::SessionsController < Api::V1::BaseController # inherit from base 
     url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{app_id}&secret=#{app_secret}&js_code=#{code}&grant_type=authorization_code"
     response = RestClient.get(url)
     JSON.parse(response.body)
+    p JSON.parse(response.body)
   end
 
   def find_user # find or create user
     open_id = fetch_wx_open_id(params[:code])["openid"]
-    User.find_or_create_by(open_id: open_id)
+    p open_id
+    user = User.find_or_create_by(open_id: open_id)
+    unless user.valid?
+      user.compound = Compound.first
+      user.save
+    end
+    user
   end
 
   def jwt_encode(payload) # generate JWT
