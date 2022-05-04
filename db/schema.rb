@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_03_044213) do
+ActiveRecord::Schema.define(version: 2022_05_04_080735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,19 +41,19 @@ ActiveRecord::Schema.define(version: 2022_05_03_044213) do
     t.string "image_url"
     t.integer "value"
     t.string "request"
-    t.string "freebie"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.string "name"
+    t.boolean "is_freebie"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "bid_id", null: false
-    t.string "comment"
+    t.text "comment"
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,13 +66,13 @@ ActiveRecord::Schema.define(version: 2022_05_03_044213) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "nickname"
-    t.integer "is_banned"
     t.integer "score"
-    t.integer "building_number"
-    t.integer "room_number"
+    t.string "building_number"
+    t.string "room_number"
     t.bigint "compound_id", null: false
     t.string "phone_number"
     t.string "avatar_url"
+    t.boolean "is_banned"
     t.index ["compound_id"], name: "index_users_on_compound_id"
   end
 
