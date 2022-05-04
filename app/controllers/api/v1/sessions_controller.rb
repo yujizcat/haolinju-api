@@ -5,6 +5,7 @@ class Api::V1::SessionsController < Api::V1::BaseController # inherit from base 
     user = find_user
     p user
     token = jwt_encode(user_id: user.id) # put user_id in payload
+    p token
     render json: {
       headers: { "X-USER-TOKEN" => token },
       user: user,
@@ -19,7 +20,6 @@ class Api::V1::SessionsController < Api::V1::BaseController # inherit from base 
     url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{app_id}&secret=#{app_secret}&js_code=#{code}&grant_type=authorization_code"
     response = RestClient.get(url)
     JSON.parse(response.body)
-    p JSON.parse(response.body)
   end
 
   def find_user # find or create user

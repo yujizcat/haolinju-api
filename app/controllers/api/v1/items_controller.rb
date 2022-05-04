@@ -1,4 +1,4 @@
-class Api::V1::ItemsController < ApplicationController
+class Api::V1::ItemsController < Api::V1::BaseController
   before_action :set_item, only: [:show]
 
   def index
@@ -26,12 +26,11 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def myitems
-
   end
 
   def receive
-    
   end
+
   private
 
   def set_item
