@@ -7,12 +7,6 @@ class Api::V1::UsersController < ApplicationController
   def show
   end
 
-  def show_nickname
-    @user_nickname = User.find(params[:id]).nickname
-
-    render json: @user_nickname
-  end
-
   def my_items
     @user_items = @current_user.items
     p @user_items
