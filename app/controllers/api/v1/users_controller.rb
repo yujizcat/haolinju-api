@@ -4,9 +4,9 @@ class Api::V1::UsersController < ApplicationController
     render json: @users #Just for testing
   end
 
-  def show
-    @user = User.find(params[:id])
+  def show_nickname
+    @user_nickname = User.find(params[:id]).nickname
 
-    render json: @user
+    render json: @user_nickname
   end
 end
