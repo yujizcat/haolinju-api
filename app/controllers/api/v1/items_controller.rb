@@ -51,6 +51,6 @@ class Api::V1::ItemsController < Api::V1::BaseController
   end
 
   def item_params
-    params.require(:item).permit(:name, :category, :description, :condition, :image_url, :value, :request, :freebie, :status, :user_id)
+    params.require(:item).permit(:name, :category, :description, :condition, :image_url, :value, :request, :is_freebie, :status, :user_id)
   end
 end
