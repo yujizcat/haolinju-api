@@ -2,7 +2,13 @@ class Api::V1::ItemsController < Api::V1::BaseController
   before_action :set_item, only: [:show]
 
   def index
-    @items = Item.all
+    if params[:query].present?
+      p "present"
+      @items = Item.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      p "not present"
+      @items = Item.all
+    end
     render json: @items #Just for testing
   end
 
@@ -18,7 +24,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
 
   def show
     @usernickname = @item.user.nickname
-    render json: {item: @item, usernickname: @usernickname}
+    render json: { item: @item, usernickname: @usernickname }
   end
 
   def update
@@ -39,10 +45,25 @@ class Api::V1::ItemsController < Api::V1::BaseController
     end
   end
 
+  def user_items
+    @user_items = User.find(params[:id]).items
+    render json: @user_items
+  end
+
   def myitems
   end
 
   def receive
+  end
+
+  def freebie
+    @items = Item.where(is_freebie: true)
+    render json: @items
+  end
+
+  def search
+    @items = Item.where("name like ?", "%mop%")
+    render json: @items
   end
 
   private
