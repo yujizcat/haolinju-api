@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "login", to: "sessions#login", as: :login
 
+      get "items/freebie", to: "items#freebie"
+      get "items/search", to: "items#search"
       resources :items, only: [:index, :create, :show, :update, :destroy] do
         resources :bids, only: [:index] # items/:item_id/bids
       end
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
         resources :items, only: [:index, :show]
       end
 
+      get "users/:id/user_items", to: "items#user_items"
       get "users/:id/items", to: "items#myitems"
       patch "bids/:id/decline", to: "bids#decline"
       patch "bids/:id/accept", to: "bids#accept"
