@@ -17,7 +17,8 @@ class Api::V1::ItemsController < Api::V1::BaseController
   end
 
   def show
-    render json: @item
+    @usernickname = @item.user.nickname
+    render json: {item: @item, usernickname: @usernickname}
   end
 
   def update

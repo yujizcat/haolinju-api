@@ -15,7 +15,6 @@ Rails.application.routes.draw do
         resources :items, only: [:index, :show]
       end
 
-      get "users/:id/show_nickname", to: "users#show_nickname"
       get "users/:id/items", to: "items#myitems"
       patch "bids/:id/decline", to: "bids#decline"
       patch "bids/:id/accept", to: "bids#accept"
