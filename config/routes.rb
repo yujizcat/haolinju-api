@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       post "login", to: "sessions#login", as: :login
-
+      get "items/freebie", to: "items#freebie"
+      get "items/search", to: "items#search"
       resources :items, only: [:index, :create, :show, :update, :destroy] do
         resources :bids, only: [:index] # items/:item_id/bids
       end
@@ -16,7 +17,9 @@ Rails.application.routes.draw do
       end
 
       get "users/:id/show_nickname", to: "users#show_nickname"
-      get "users/:id/items", to: "items#myitems"
+      get "users/:id/user_items", to: "items#user_items"
+      # get "users/my_items", to: "user#my_items"
+
       patch "bids/:id/decline", to: "bids#decline"
       patch "bids/:id/accept", to: "bids#accept"
       patch "items/:id/receive", to: "items#receive"
