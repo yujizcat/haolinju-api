@@ -44,6 +44,9 @@ class Api::V1::ItemsController < Api::V1::BaseController
     end
   end
 
+  def myitems
+  end
+
   def user_items
     @user_items = User.find(params[:id]).items
     render json: @user_items
