@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
+require "securerandom"
 
 puts "Cleaning up database..."
 
@@ -68,6 +69,20 @@ rand(20...50).times do
   item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
   item.save!
 end
+first_userid = User.first.id 
+last_userid = User.last.id
+first_itemid = Item.first.id 
+last_itemid = Item.last.id
+puts "Seeding bids"
 
+100.times do
+  bid = Bid.new(
+    user_id: rand(first_userid...last_userid),
+    owner_item_id: SecureRandom.random_number(first_itemid...last_itemid),
+    taker_item_id: SecureRandom.random_number(first_itemid...last_itemid),
+    note: "i want this one"
+  )
+  bid.save!
+end
 # Use this for random get a user
 # User.order(Arel.sql('RANDOM()')).first
