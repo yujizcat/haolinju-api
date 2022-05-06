@@ -3,12 +3,15 @@ class Api::V1::ItemsController < Api::V1::BaseController
 
   def index
     if params[:query].present?
-      p "present"
       @items = Item.where("name ILIKE ?", "%#{params[:query]}%")
     else
-      p "not present"
-      @items = Item.all
+      if params[:cate].present?
+        @items = Item.where(category: params[:cate])
+      else
+        @items = Item.all
+      end
     end
+
     render json: @items #Just for testing
   end
 
@@ -61,10 +64,10 @@ class Api::V1::ItemsController < Api::V1::BaseController
     render json: @items
   end
 
-  def search
-    @items = Item.where("name like ?", "%mop%")
-    render json: @items
-  end
+  # def search
+  #  @items = Item.where("name like ?", "%mop%")
+  #  render json: @items
+  # end
 
   private
 
