@@ -11,6 +11,7 @@ class Api::V1::BidsController < Api::V1::BaseController
     p "create"
     @bid = Bid.new(bid_params)
     @bid.user = @current_user
+
     @bid.status = "pending"
     @bid.save
     if render json: @bid
