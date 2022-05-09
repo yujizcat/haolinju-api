@@ -13,8 +13,8 @@ class Api::V1::UsersController < ApplicationController
     render json: @user_nickname
   end
 
-  def my_items
-    @user_items = @current_user.items
+  def user_items
+    @user_items = @User.find(params[:id]).items
     p @user_items
     render json :@user_items
   end

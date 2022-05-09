@@ -9,12 +9,13 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :create, :show, :update, :destroy] do
         resources :bids, only: [:index] # items/:item_id/bids
       end
-      resources :bids, only: [:create, :show, :destroy] do
+      resources :bids, only: [:index, :create, :show, :destroy] do
         resources :reviews, only: [:index] # bids/:bid_id/reviews
       end
 
       resources :users, only: [:index, :show] do
         resources :items, only: [:index, :show]
+        resources :bids, only: [:index, :create]
       end
 
       get "users/:id/user_items", to: "items#user_items"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_05_030435) do
+ActiveRecord::Schema.define(version: 2022_05_08_072415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_05_05_030435) do
     t.bigint "user_id", null: false
     t.bigint "owner_item_id", null: false
     t.bigint "taker_item_id", null: false
-    t.string "status"
+    t.string "status", default: "available"
     t.string "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_05_05_030435) do
     t.string "description"
     t.string "condition"
     t.string "image_url"
-    t.integer "value"
+    t.integer "value", default: 1
     t.string "request"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
