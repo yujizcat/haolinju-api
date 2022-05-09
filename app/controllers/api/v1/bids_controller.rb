@@ -2,22 +2,28 @@ class Api::V1::BidsController < Api::V1::BaseController
   before_action :set_bid, only: [:show]
 
   def index
-    @bids = Bid.all
+    @user = User.find(params[:user_id])
+    @bids = @user.bids
     render json: @bids #Just for testing
   end
 
   def create
+    p "create"
     @bid = Bid.new(bid_params)
     @bid.user = @current_user
-    if @bid.save
-      render json: @bid
+    @bid.status = "pending"
+    @bid.save
+    if render json: @bid
     else
-      render :new
+      render json: { message: "not saved" }
     end
   end
 
   def show
     render json: @bid
+  end
+
+  def new
   end
 
   def destroy
