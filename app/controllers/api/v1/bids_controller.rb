@@ -9,8 +9,8 @@ class Api::V1::BidsController < Api::V1::BaseController
   def create
     @bid = Bid.new(bid_params)
     @bid.user = @current_user
-    if @bid.save
-      render json: @bid
+    @bid.save
+    if  render json: @bid
     else
       render :new
     end

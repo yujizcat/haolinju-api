@@ -44,7 +44,7 @@ puts "Seeding items:Study"
 rand(10...20).times do
   item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
   item = Item.new({ name: item_names_study.sample, category: "学习",
-                    condition: conditions.sample, image_url: "", value: rand(1...10), request: item_names.sample,
+                    condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
                     is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
   item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
   item.save
@@ -55,7 +55,7 @@ puts "Seeding items:Sports"
 rand(10...20).times do
   item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
   item = Item.new({ name: item_names_sport.sample, category: "体育",
-                    condition: conditions.sample, image_url: "", value: rand(1...10), request: item_names.sample,
+                    condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
                     is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
   item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
   item.save
@@ -66,7 +66,7 @@ puts "Seeding items:Electric"
 rand(10...20).times do
   item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
   item = Item.new({ name: item_names_electric.sample, category: "电器",
-                    condition: conditions.sample, image_url: "", value: rand(1...10), request: item_names.sample,
+                    condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
                     is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
   item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
   item.save
@@ -77,7 +77,7 @@ puts "Seeding items:Furniture"
 rand(10...20).times do
   item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
   item = Item.new({ name: item_names_furniture.sample, category: "家具",
-                    condition: conditions.sample, image_url: "", value: rand(1...10), request: item_names.sample,
+                    condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
                     is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
   item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
   item.save
@@ -88,7 +88,7 @@ puts "Seeding items:fashion"
 rand(10...20).times do
   item_names = [Faker::Appliance.equipment, Faker::Music.instrument, Faker::Camera.brand_with_model]
   item = Item.new({ name: item_names_fashion.sample, category: "时尚",
-                    condition: conditions.sample, image_url: "", value: rand(1...10), request: item_names.sample,
+                    condition: conditions.sample, image_url: "", value: 1, request: item_names.sample,
                     is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
   item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
   item.save
