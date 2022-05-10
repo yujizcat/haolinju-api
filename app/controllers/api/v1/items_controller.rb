@@ -3,12 +3,12 @@ class Api::V1::ItemsController < Api::V1::BaseController
 
   def index
     if params[:query].present?
-      @items = Item.where("name ILIKE ?", "%#{params[:query]}%")
+      @items = Item.where("name ILIKE ?", "%#{params[:query]}%").map { |item| item.to_h }
     else
       if params[:cate].present?
-        @items = Item.where(category: params[:cate])
+        @items = Item.where(category: params[:cate]).map { |item| item.to_h }
       else
-        @items = Item.all
+        @items = Item.all.map { |item| item.to_h }
       end
     end
 
@@ -19,7 +19,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
     @item = Item.new(item_params)
     @item.user = @current_user
     if @item.save
-      render json: @item
+      render json: @item.to_h
     else
       render :new
     end
@@ -27,13 +27,13 @@ class Api::V1::ItemsController < Api::V1::BaseController
 
   def show
     @usernickname = @item.user.nickname
-    render json: { item: @item, usernickname: @usernickname }
+    render json: { item: @item.to_h, usernickname: @usernickname }
   end
 
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
-    render json: @item
+    render json: @item.to_h
   end
 
   def destroy
@@ -41,7 +41,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
       # p "item found"
       @item = Item.find(params[:id])
       @item.destroy
-      render json: @item
+      render json: @item.to_h
       # request.referrer
     rescue ActiveRecord::RecordNotFound => e
       # p "item not found"
@@ -49,7 +49,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
   end
 
   def user_items
-    @user_items = User.find(params[:id]).items
+    @user_items = User.find(params[:id]).items.map { |item| item.to_h }
     render json: @user_items
   end
 
@@ -60,7 +60,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
   end
 
   def freebie
-    @items = Item.where(is_freebie: true)
+    @items = Item.where(is_freebie: true).map { |item| item.to_h }
     render json: @items
   end
 

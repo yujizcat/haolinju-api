@@ -40,9 +40,15 @@ class Api::V1::BidsController < Api::V1::BaseController
   end
 
   def accept
+    @bid = Bid.find(params[:id])
+    @bid.status = "accepted"
+    render json: @bid
   end
 
   def decline
+    @bid = Bid.find(params[:id])
+    @bid.status = "declined"
+    render json: @bid
   end
 
   private
