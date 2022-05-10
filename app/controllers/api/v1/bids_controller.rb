@@ -4,7 +4,10 @@ class Api::V1::BidsController < Api::V1::BaseController
   def index
     @user = User.find(params[:user_id])
     @bids = @user.bids
-    render json: @bids #Just for testing
+    @bids_and_items = @bids.map do |bid|
+      { bid: bid, item: bid.owner_item }
+    end
+    render json: @bids_and_items #Just for testing
   end
 
   def create
