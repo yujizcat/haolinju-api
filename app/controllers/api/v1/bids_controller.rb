@@ -5,7 +5,7 @@ class Api::V1::BidsController < Api::V1::BaseController
     @user = User.find(params[:user_id])
     @bids = @user.bids
     @bids_and_items = @bids.map do |bid|
-      { bid: bid, item: bid.owner_item }
+      { bid: bid, owner_item: bid.owner_item, taker_item: bid.taker_item }
     end
     render json: @bids_and_items #Just for testing
   end
