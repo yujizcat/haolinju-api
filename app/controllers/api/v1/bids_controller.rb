@@ -17,8 +17,11 @@ class Api::V1::BidsController < Api::V1::BaseController
 
     @bid.status = "pending"
     @bid.save
-    if render json: @bid
+    if @bid.save
+      p "saved"
+      render json: @bid
     else
+      p "not saved"
       render json: { message: "not saved" }
     end
   end
