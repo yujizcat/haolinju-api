@@ -108,7 +108,7 @@ first_itemid = Item.first.id
 last_itemid = Item.last.id
 puts "Seeding bids"
 
-100.times do
+10.times do
   bid = Bid.new(
     user_id: rand(first_userid...last_userid),
     owner_item_id: SecureRandom.random_number(first_itemid...last_itemid),
@@ -119,3 +119,442 @@ puts "Seeding bids"
 end
 # Use this for random get a user
 # User.order(Arel.sql('RANDOM()')).first
+
+#---------For Real seed and reset----------
+Bid.destroy_all
+Item.destroy_all
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "登山背包", category: "体育",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=4256958360,2636819116&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "电脑支架", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=2282657352,655950086&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "电饭煲", category: "电器",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=70086449,932049839&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "电磁炉", category: "电器",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=1827791924,2284996746&fm=253&fmt=auto&app=120&f=JPEG?w=600&h=450"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "扫地机器人", category: "电器",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=1900764361,3451186302&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=347"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "香奈儿包包", category: "时尚",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=3917141243,287314676&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=235"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "Gucci包包", category: "时尚",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=3018592014,3373773813&fm=253&fmt=auto&app=120&f=PNG?w=750&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "男士CK钱包", category: "时尚",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=1004134410,951357099&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "炒锅", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=2517674439,3411429176&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "蚊帐", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=1021559130,1185233313&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "扫把", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=1091806379,215130169&fm=253&fmt=auto&app=138&f=PNG?w=604&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "加大高级拖把", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=554972364,2910169279&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "鼠标垫", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=4108624280,1926245844&fm=253&fmt=auto&app=138&f=JPEG?w=432&h=286"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "进口滑板", category: "体育",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=4208816974,731487539&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "开瓶器", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00228-1994.jpg"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "休闲乘凉椅子", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00424-717.jpg"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "睫毛刷", category: "时尚",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=829818165,1994089928&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "瑜伽球", category: "体育",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=1929795644,2968285171&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "kindle电子阅读器", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=1609207697,2814693525&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=667"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "苹果14寸电脑包", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=1487726527,277177351&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "时尚行李箱", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=4182279657,916808799&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "舒适台灯", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=4178451386,1683788574&fm=253&fmt=auto&app=120&f=JPEG?w=350&h=350"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "洁厕灵", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=190917891,3693278024&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "苹果鼠标", category: "学习",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "http://t14.baidu.com/it/u=3215254233,3152151350&fm=224&app=112&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "加大瑜伽垫", category: "体育",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=1494073237,215701048&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "洗澡拖鞋", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img1.baidu.com/it/u=3419469251,912614876&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "颈肩按摩器", category: "电器",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img0.baidu.com/it/u=925829166,1792256674&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "特大号花盆", category: "家具",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://img2.baidu.com/it/u=3828046426,4279253719&fm=253&fmt=auto&app=138&f=JPEG?w=523&h=500"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+
+# ------------------------Test items------------------------
+item = Item.new({ name: "时尚太阳镜", category: "时尚",
+                  condition: "", image_url: "", value: 1,
+                  is_freebie: [true, false].sample, status: "avaliable", user: User.order(Arel.sql("RANDOM()")).first })
+# item.image_url = Faker::LoremFlickr.image(search_terms: [item.name])
+item.save
+#upload image with active storage
+
+# find the file
+url = "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00475-857.jpg"
+file = URI.open(url)
+# attach it to item.photo
+
+item.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
