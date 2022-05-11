@@ -18,6 +18,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
   def create
     @item = Item.new(item_params)
     @item.user = @current_user
+    @item.status = "available"
     if @item.save
       render json: @item.to_h
     else
@@ -57,6 +58,17 @@ class Api::V1::ItemsController < Api::V1::BaseController
   end
 
   def receive
+    @item = Item.find(params[:id])
+    @item.status = "unavailable"
+    @item.save
+    render json: @item
+  end
+
+  def notreceive
+    @item = Item.find(params[:id])
+    @item.status = "available"
+    @item.save
+    render json: @item
   end
 
   def freebie
