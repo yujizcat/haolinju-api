@@ -1,5 +1,5 @@
 class Api::V1::ItemsController < Api::V1::BaseController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :upload]
 
   def index
     if params[:query].present?
@@ -68,6 +68,15 @@ class Api::V1::ItemsController < Api::V1::BaseController
   #  @items = Item.where("name like ?", "%mop%")
   #  render json: @items
   # end
+
+
+  def upload
+    if @item.photo.attach(params.require(:file))
+      render json: { msg: 'photo uploaded' }
+    else
+      render json: { err: 'fail to upload' }
+    end
+  end
 
   private
 

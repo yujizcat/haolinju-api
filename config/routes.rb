@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get "items/search", to: "items#search"
       resources :items, only: [:index, :create, :show, :update, :destroy] do
         resources :bids, only: [:index] # items/:item_id/bids
+        member do
+          post "upload", to: "items#upload"
+        end
       end
       resources :bids, only: [:index, :create, :show, :destroy] do
         resources :reviews, only: [:index] # bids/:bid_id/reviews
