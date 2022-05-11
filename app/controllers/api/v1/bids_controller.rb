@@ -5,7 +5,7 @@ class Api::V1::BidsController < Api::V1::BaseController
     @user = User.find(params[:user_id])
     @bids = @user.bids
     @bids_and_items = @bids.map do |bid|
-      { bid: bid, owner_item: bid.owner_item, taker_item: bid.taker_item }
+      { bid: bid, owner_item: bid.owner_item.to_h, taker_item: bid.taker_item.to_h }
     end
     render json: @bids_and_items #Just for testing
   end
@@ -45,12 +45,21 @@ class Api::V1::BidsController < Api::V1::BaseController
   def accept
     @bid = Bid.find(params[:id])
     @bid.status = "accepted"
+    @bid.save
     render json: @bid
   end
 
   def decline
     @bid = Bid.find(params[:id])
     @bid.status = "declined"
+    @bid.save
+    render json: @bid
+  end
+
+  def pending
+    @bid = Bid.find(params[:id])
+    @bid.status = "pending"
+    @bid.save
     render json: @bid
   end
 

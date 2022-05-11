@@ -23,9 +23,11 @@ Rails.application.routes.draw do
 
       get "users/:id/user_items", to: "items#user_items"
       get "users/:id/items", to: "items#myitems"
-      patch "bids/:id/decline", to: "bids#decline"
-      patch "bids/:id/accept", to: "bids#accept"
-      patch "items/:id/receive", to: "items#receive"
+      post "bids/:id/decline", to: "bids#decline"
+      post "bids/:id/accept", to: "bids#accept"
+      post "bids/:id/pending", to: "bids#pending"
+      post "items/:id/receive", to: "items#receive"
+      post "items/:id/notreceive", to: "items#notreceive"
       patch "items/:id", to: "items#update"
     end
   end
