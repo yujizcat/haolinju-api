@@ -81,12 +81,11 @@ class Api::V1::ItemsController < Api::V1::BaseController
   #  render json: @items
   # end
 
-
   def upload
     if @item.photo.attach(params.require(:file))
-      render json: { msg: 'photo uploaded' }
+      render json: { msg: "photo uploaded" }
     else
-      render json: { err: 'fail to upload' }
+      render json: { err: "fail to upload" }
     end
   end
 
