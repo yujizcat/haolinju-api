@@ -2,8 +2,13 @@ class Api::V1::BidsController < Api::V1::BaseController
   before_action :set_bid, only: [:show]
 
   def index
-    @user = User.find(params[:user_id])
-    @bids = @user.bids
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @bids = @user.bids
+    elsif params[:item_id].present?
+      @item = Item.find(params[:item_id])
+      @bids = @item.bids
+    end
     @bids_and_items = @bids.map do |bid|
       { bid: bid, owner_item: bid.owner_item.to_h, taker_item: bid.taker_item.to_h }
     end
