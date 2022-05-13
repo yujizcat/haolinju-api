@@ -17,9 +17,15 @@ class Api::V1::BidsController < Api::V1::BaseController
 
   def create
     p "create"
+    puts "================================asdasdsad"
+    puts params["phone_number"]
+    puts params
+    puts "============================== one==asdasdsad"
+    @current_user.phone_number = params["phone_number"]
+    @current_user.save
+    puts @current_user
     @bid = Bid.new(bid_params)
     @bid.user = @current_user
-
     @bid.status = "pending"
     @bid.save
     if @bid.save
@@ -75,6 +81,6 @@ class Api::V1::BidsController < Api::V1::BaseController
   end
 
   def bid_params
-    params.require(:bid).permit(:note, :status, :user_id, :owner_item_id, :taker_item_id)
+    params.require(:bid).permit(:note, :status, :user_id, :owner_item_id, :taker_item_id )
   end
 end
