@@ -17,13 +17,8 @@ class Api::V1::BidsController < Api::V1::BaseController
 
   def create
     p "create"
-    puts "================================asdasdsad"
-    puts params["phone_number"]
-    puts params
-    puts "============================== one==asdasdsad"
     @current_user.phone_number = params["phone_number"]
     @current_user.save
-    puts @current_user
     @bid = Bid.new(bid_params)
     @bid.user = @current_user
     @bid.status = "pending"
